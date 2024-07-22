@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    expose:
+      - "8080"
+      - "5555"
+      - "4444"
+    environment:
+      - DOMAIN_NAME=acidpictures.ink
+    networks:
+      - app-network
+
+  caddy:
+    image: caddy:latest
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./certs:/etc/caddy/certs
+      - ./peer.json:/peer.json
+    ports:
+      - "80:80"
+      - "443:443"
+      - "5555:5555"
+      - "4444:4444"
+    depends_on:
+      - app
+    environment:
+      - DOMAIN_NAME=acidpictures.ink
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

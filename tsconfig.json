@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    // only necessary for the example linting check, your project may not need
+    // these settings
+    "strictNullChecks": true,
+    "esModuleInterop": true
+  },
+  "include": ["src"]
+}
