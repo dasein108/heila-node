@@ -1,5 +1,5 @@
 {$DOMAIN_NAME} {
-tls /etc/caddy/certs/acidpictures_ink_chain.crt /etc/caddy/certs/acidpictures_ink.key
+tls
 reverse_proxy /* http://app:8080
 }
 
@@ -8,6 +8,6 @@ reverse_proxy /* http://app:5555
 }
 
 {$DOMAIN_NAME}:4444 {
-tls /etc/caddy/certs/acidpictures_ink_chain.crt /etc/caddy/certs/acidpictures_ink.key
+tls
 reverse_proxy /* http://app:4444
 }
