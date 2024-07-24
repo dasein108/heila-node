@@ -62,8 +62,15 @@ async function main() {
     peerId,
     datastore,
     addresses: {
-      announce: [`/dns4/${domainName}/tcp/4444/wss`],
-      listen: ["/ip4/0.0.0.0/tcp/5555/ws", `/dns4/${domainName}/tcp/4444/wss`],
+      announce: [
+        `/dns4/${domainName}/tcp/4444/wss`,
+        `/dns4/${domainName}/tcp/4444/wss/p2p-circuit`,
+      ],
+      listen: [
+        "/ip4/0.0.0.0/tcp/5555/ws",
+        `/dns4/${domainName}/tcp/4444/wss`,
+        `/dns4/${domainName}/tcp/4444/wss/p2p-circuit`,
+      ],
     },
     transports: [
       tcp(),
