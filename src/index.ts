@@ -6,8 +6,9 @@ import { bootstrap } from "@libp2p/bootstrap";
 import { identify } from "@libp2p/identify";
 import { tls } from "@libp2p/tls";
 import { tcp } from "@libp2p/tcp";
-import { MemoryBlockstore } from "blockstore-core";
-import { MemoryDatastore } from "datastore-core";
+import { LevelBlockstore } from "blockstore-level";
+
+import { LevelDatastore } from "datastore-level";
 import { createHelia } from "helia";
 import { createLibp2p } from "libp2p";
 import { circuitRelayServer } from "@libp2p/circuit-relay-v2";
@@ -17,6 +18,8 @@ import * as filters from "@libp2p/websockets/filters";
 import express from "express";
 import { peerIdFromKeys } from "@libp2p/peer-id";
 import fs from "fs";
+import { MemoryBlockstore } from "blockstore-core";
+import { MemoryDatastore } from "datastore-core";
 
 let peers: String[] = [];
 const domainName = process.env.DOMAIN_NAME || "acidpictures.ink";
@@ -52,10 +55,11 @@ function updatePeerList(libp2p) {
 
 async function main() {
   const peerId = await getPeerId();
-  const blockstore = new MemoryBlockstore();
-
-  // application-specific data lives in the datastore
-  const datastore = new MemoryDatastore();
+  // Persistent
+  const blockstore = new LevelBlockstore("./blockstore");
+  const datastore = new LevelDatastore("./datastore");
+  // const blockstore = new MemoryBlockstore(); // new LevelBlockstore(new Level("./blockstore"));
+  // const datastore = new MemoryDatastore(); // new LevelDatastore(new Level("./datastore"));
 
   // libp2p is the networking layer that underpins Helia
   const libp2p = await createLibp2p({
