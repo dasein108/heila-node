@@ -30,12 +30,15 @@
     "@libp2p/tcp": "^9.0.12",
     "@libp2p/tls": "^1.1.2",
     "@multiformats/multiaddr": "^12.3.0",
-    "blockstore-core": "^4.1.0",
+    "blockstore-core": "^4.4.1",
+    "blockstore-level": "^1.1.8",
     "datastore-core": "^9.1.1",
+    "datastore-level": "^10.1.8",
     "delay": "^6.0.0",
     "express": "^4.19.2",
     "helia": "^4.0.1",
     "it-pipe": "^3.0.1",
+    "level": "^8.0.1",
     "libp2p": "^1.2.0"
   },
   "devDependencies": {

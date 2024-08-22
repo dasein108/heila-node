@@ -2,3 +2,5 @@ node_modules/
 certs/
 dist/
 peer.json
+blockstore/
+datastore/
